@@ -1,0 +1,10 @@
+[server]
+host = 0.0.0.0
+repository path = /home/bobuk/V/vocavika
+logging = 10
+
+[client]
+server = kodi.li
+repository path = /home/bobuk/V/vocavika
+delay = 60
+logging = 10
