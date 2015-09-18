@@ -9,7 +9,7 @@ C.read('.ugitstat')
 
 class uGitServerProtocol:
     def get_git_log(self):
-        git = subprocess.run(['git', 'log', '--oneline'], stdout=subprocess.PIPE)
+        git = subprocess.run(['git', 'log', '--oneline', '-1'], stdout=subprocess.PIPE)
         return git.stdout.decode('utf-8').split(' ', 1)[0]
 
     def connection_made(self, transport):
@@ -20,16 +20,16 @@ class uGitServerProtocol:
         data = 'GIT ' + self.get_git_log()
         logging.debug('Received %r from %s' % (message, addr))
         logging.debug('Send %r to %s' % ('GIT ' + self.get_git_log(), addr))
-        self.transport.sendto(data, addr)
+        self.transport.sendto(data.encode('utf-8'), addr)
 
 
 if __name__ == '__main__':
+    logging.basicConfig(format='%(asctime)s %(message)s', level = int(C['server']['logging']))
     loop = asyncio.get_event_loop()
     logging.info("Starting uGitStat UDP server")
     listen = loop.create_datagram_endpoint(
         uGitServerProtocol, local_addr=(C['server']['host'], 19798))
     transport, protocol = loop.run_until_complete(listen)
-    logging.basicConfig(format='%(asctime)s %(message)s', level = C['server']['logging'])
 
     try:
         loop.run_forever()
