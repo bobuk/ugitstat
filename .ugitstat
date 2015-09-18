@@ -1,10 +1,9 @@
 [server]
 host = 0.0.0.0
-repository path = /home/bobuk/V/vocavika
-logging = 10
+logging = 20
 
 [client]
-server = kodi.li
-repository path = /home/bobuk/V/vocavika
+server = 127.0.0.1
 delay = 60
-logging = 10
+logging = 20
+command = git pull
