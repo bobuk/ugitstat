@@ -10,8 +10,8 @@ C.read('.ugitstat')
 
 class uGitServerProtocol:
     def get_git_log(self):
-        git = subprocess.run(['git', 'log', '--oneline', '-1'], stdout=subprocess.PIPE)
-        return git.stdout.decode('utf-8').split(' ', 1)[0]
+        git = subprocess.check_output(['git', 'log', '--oneline', '-1'])
+        return git.decode('utf-8').split(' ', 1)[0]
 
     def connection_made(self, transport):
         self.transport = transport

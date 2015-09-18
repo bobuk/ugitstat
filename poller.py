@@ -11,8 +11,8 @@ C.read('.ugitstat')
 
 class uGitClientProtocol:
     def get_git_log(self):
-        git = subprocess.run(['git', 'log', '--oneline', '-1'], stdout=subprocess.PIPE)
-        return git.stdout.decode('utf-8').split(' ', 1)[0]
+        git = subprocess.check_output(['git', 'log', '--oneline', '-1'])
+        return git.decode('utf-8').split(' ', 1)[0]
 
     def __init__(self, loop):
         self.loop = loop
@@ -34,8 +34,8 @@ class uGitClientProtocol:
             logging.debug('Local version is:' + current)
             if current != data[1]:
                 logging.info('Version is differ, so run command from config # ' + C['client']['command'])
-                cmd = subprocess.run(C['client']['command'], shell=True, stdout=subprocess.PIPE)
-                logging.debug("Result: " + cmd.stdout)
+                res = subprocess.check_output(C['client']['command'], shell=True)
+                logging.debug("Result: " + res.decode('utf-8'))
         else:
             logging.info('Unknown answer: ' + data[0])
 
