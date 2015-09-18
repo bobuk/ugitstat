@@ -1,9 +1,11 @@
 [server]
 host = 0.0.0.0
 logging = 20
+repository = /home/bobuk/V/vocavika
 
 [client]
 server = 127.0.0.1
 delay = 60
 logging = 20
 command = git pull
+repository = /home/bobuk/GitHub/vocavika

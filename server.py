@@ -1,6 +1,7 @@
 import asyncio
 import subprocess
 import logging
+import os
 
 from configparser import ConfigParser
 
@@ -24,6 +25,7 @@ class uGitServerProtocol:
 
 
 if __name__ == '__main__':
+    os.chdir(C['server'].get('repository', '.'))
     logging.basicConfig(format='%(asctime)s %(message)s', level = int(C['server']['logging']))
     loop = asyncio.get_event_loop()
     logging.info("Starting uGitStat UDP server")

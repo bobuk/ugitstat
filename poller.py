@@ -2,6 +2,7 @@ from time import sleep
 import asyncio
 import subprocess
 import logging
+import os
 
 from configparser import ConfigParser
 
@@ -50,6 +51,7 @@ class uGitClientProtocol:
         loop.stop()
 
 if __name__ == '__main__':
+    os.chdir(C['client'].get('repository', '.'))
     logging.basicConfig(format='%(asctime)s %(message)s', level = int(C['client']['logging']))
     loop = asyncio.get_event_loop()
     while True:
