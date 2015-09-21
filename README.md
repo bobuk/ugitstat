@@ -1,7 +1,7 @@
 # ugitstat
 
-Very simple git repo status server. I use it to deploy a fresh code into very remote server.
-To simplify the explanation: one of my servers installed in very private network so there's no chance to pierce a hole in their NAT.
-So I build a really dummy UDP server who shows a current state of git repo and poll this server from NAT'ed machine.
+This is a very simple git repo status server. I use it every time I need to deploy fresh code into a remote machine.
 
-Check out .ugitstat file to understand anything else.
+To simplify: one of my servers is running in a private network enviroment and there is no chance even to pierce a tiny hole in the NAT. To workaround that I have built a dummy UDP server: it which shows current state of a git repo and polls that server from the NATed machine.
+
+Check-out .ugitstat file for more details.
