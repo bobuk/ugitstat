@@ -27,7 +27,7 @@ class uGitServerProtocol:
 if __name__ == '__main__':
     os.chdir(C['server'].get('repository', '.'))
     logging.basicConfig(format='%(asctime)s %(message)s', level = int(C['server']['logging']))
-    loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
     logging.info("Starting uGitStat UDP server")
     listen = loop.create_datagram_endpoint(
         uGitServerProtocol, local_addr=(C['server']['host'], 19798))

@@ -53,7 +53,7 @@ class uGitClientProtocol:
 if __name__ == '__main__':
     os.chdir(C['client'].get('repository', '.'))
     logging.basicConfig(format='%(asctime)s %(message)s', level = int(C['client']['logging']))
-    loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
     while True:
         connect = loop.create_datagram_endpoint(
             lambda: uGitClientProtocol(loop),
